@@ -14,6 +14,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import andos.lu.cn.andos.fragments.LeakCanaryFragment;
 import andos.lu.cn.andos.fragments.SimpleFresccoFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,7 +60,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //this is on main thread
                 SimpleFresccoFragment simpleFresccoFragment = new SimpleFresccoFragment();
-                simpleFresccoFragment.show(fragmentManager,"SimpleFresccoFragment");
+                simpleFresccoFragment.show(fragmentManager, "SimpleFresccoFragment");
+            }
+        });
+
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //this is on main thread
+                LeakCanaryFragment leakFragment = new LeakCanaryFragment();
+                leakFragment.show(fragmentManager, "Leak Fragment");
             }
         });
 

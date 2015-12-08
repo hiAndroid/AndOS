@@ -3,6 +3,7 @@ package andos.lu.cn.andos.fragments;
 import android.app.DialogFragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import andos.lu.cn.andos.MainApplication;
 import andos.lu.cn.andos.R;
 
 /**
@@ -44,5 +46,12 @@ public class SimpleFresccoFragment extends DialogFragment {
         draweeView.setImageURI(uri);
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("andos","on destory simple frescco fragment");
+        MainApplication.refWatcher.watch(this);
     }
 }

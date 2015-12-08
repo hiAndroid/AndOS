@@ -12,6 +12,8 @@ import com.facebook.stetho.Stetho;
 import com.facebook.stetho.dumpapp.DumpException;
 import com.facebook.stetho.dumpapp.DumperContext;
 import com.facebook.stetho.dumpapp.DumperPlugin;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 /**
  * Created by wuzhong on 15/12/7.
@@ -19,6 +21,7 @@ import com.facebook.stetho.dumpapp.DumperPlugin;
 public class MainApplication extends Application {
 
     public static Context context;
+    public static RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
@@ -76,6 +79,9 @@ public class MainApplication extends Application {
                 .newBuilder(context, HttpFactory.get()).build();
         Fresco.initialize(context, config);
 //        Fresco.initialize(context);
+
+        //LEAK CANARY
+        refWatcher = LeakCanary.install(this);
 
     }
 
